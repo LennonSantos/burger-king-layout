@@ -1,18 +1,21 @@
 <template>
-  <q-page class="row content-end bg-lanche">
+  <q-page class="row content-end">
     <div class="row full-width">
       <div class="col-12 q-px-md">
         <q-card flat class="bg-white full-width">
           <q-card-section>
             <div class="row justify-between items-center">
+              <div class="col" style="max-width: 50px">
+                <q-icon name="o_request_quote" size="3em" color="primary" />
+              </div>
               <div class="col">
                 <span class="text-weight-bolder" style="font-size: 17px">
-                  18º rodada
-                  <q-badge outline color="primary" label="Prêmio R$ 500,00" />
+                  <q-badge color="secondary" text-color="black" label="Prêmio R$ 500,00" />
+                  <div>18º rodada</div>
                 </span>
               </div>
               <div class="col text-right">
-                <q-btn flat label="Apostar agora" color="primary" class="text-bold" />
+                <q-btn flat label="Apostar" color="primary" class="text-bold" />
               </div>
             </div>
           </q-card-section>
@@ -20,9 +23,9 @@
           <!-- <q-separator/> -->
 
           <q-card-section>
-            <q-linear-progress stripe size="25px" :value="0.5">
+            <q-linear-progress stripe size="20px" :value="0.5">
               <div class="absolute-full flex flex-center">
-                <q-badge color="white" text-color="primary" label="1 dia para encerrar" />
+                <q-badge color="white" text-color="primary" label="Rodada fecha em 2 dias!" />
               </div>
             </q-linear-progress>
           </q-card-section>
@@ -93,10 +96,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-  .bg-lanche {
-    background: url('~assets/lanche.png') no-repeat;
-    background-size: 100% 100%;
-  }
-</style>

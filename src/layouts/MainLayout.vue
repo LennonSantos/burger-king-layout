@@ -1,5 +1,11 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="bg-fundo">
+    <q-header class="bg-transparent">
+      <q-toolbar class="justify-end">
+        <q-btn flat round dense icon="o_notifications" />
+      </q-toolbar>
+    </q-header>
+
     <q-footer>
       <q-tabs
         v-model="tab"
@@ -63,3 +69,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+  .bg-fundo {
+    background: url('~assets/logo.png') no-repeat center center;
+    background-size: cover;
+  }
+</style>
