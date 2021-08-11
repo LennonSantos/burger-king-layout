@@ -1,6 +1,8 @@
 # Layout app Burger King
 
-Apostas Vale
+![alt text](https://github.com/LennonSantos/burger-king-layout/blob/main/screenshot.png?raw=true)
+
+Layout Burger King
 
 ## Install the dependencies
 ```bash
