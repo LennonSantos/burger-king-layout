@@ -31,7 +31,19 @@ const db = firebase.firestore()
 
 // "async" is optional;
 // more info on params: https://v2.quasar.dev/quasar-cli/boot-files
-export default boot(async ({ app }) => {
-  app.config.globalProperties.$firebase = firebase
-  app.config.globalProperties.$db = db
+export default boot(({ app, store }) => {
+  return new Promise((resolve, reject) => {
+    app.config.globalProperties.$firebase = firebase
+    app.config.globalProperties.$db = db
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        store.commit('user/setUser', user)
+      } else {
+        store.commit('user/setUser', null)
+      }
+
+      resolve()
+    })
+  })
 })

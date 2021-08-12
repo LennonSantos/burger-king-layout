@@ -15,7 +15,7 @@
                 </span>
               </div>
               <div class="col text-right">
-                <q-btn flat label="Apostar" color="primary" class="text-bold" />
+                <q-btn @click="logout" flat label="Apostar" color="primary" class="text-bold" />
               </div>
             </div>
           </q-card-section>
@@ -72,6 +72,7 @@
 
       <div class="col-12">
         <q-btn
+          @click="apostar"
           label="Apostar"
           color="primary"
           class="full-width text-h6 text-weight-bolder"
@@ -92,6 +93,37 @@ export default defineComponent({
   setup () {
     return {
       step: ref(1)
+    }
+  },
+
+  mounted () {
+    const user = this.$store.getters['user/getDataUser']
+
+    console.log(user)
+  },
+
+  methods: {
+    apostar () {
+      const email = 'lennonsbueno@gmail.com'
+      const password = '123456'
+
+      this.$firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+          this.$q.notify('logado')
+        })
+        .catch(() => {
+          this.$q.notify('erro ao logar')
+        })
+    },
+
+    logout () {
+      this.$firebase.auth().signOut()
+        .then(() => {
+          this.$q.notify('logout realizado com sucesso')
+        }).catch(() => {
+          this.$q.notify('erro ao fazer logout')
+        })
     }
   }
 })
