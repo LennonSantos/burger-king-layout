@@ -15,7 +15,7 @@
                 </span>
               </div>
               <div class="col text-right">
-                <q-btn @click="logout" flat label="Apostar" color="primary" class="text-bold" />
+                <q-btn @click="apostar" flat label="Apostar" color="primary" class="text-bold" />
               </div>
             </div>
           </q-card-section>
@@ -23,7 +23,7 @@
           <!-- <q-separator/> -->
 
           <q-card-section>
-            <q-linear-progress stripe size="20px" :value="0.5">
+            <q-linear-progress stripe size="20px" :value="0.2">
               <div class="absolute-full flex flex-center">
                 <q-badge color="white" text-color="primary" label="Rodada fecha em 2 dias!" />
               </div>
@@ -86,6 +86,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   name: 'PageIndex',
@@ -97,33 +98,16 @@ export default defineComponent({
   },
 
   mounted () {
-    const user = this.$store.getters['user/getDataUser']
+  },
 
-    console.log(user)
+  computed: {
+    ...mapGetters({
+      user: 'user/getUserData'
+    })
   },
 
   methods: {
     apostar () {
-      const email = 'lennonsbueno@gmail.com'
-      const password = '123456'
-
-      this.$firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          // Signed in
-          this.$q.notify('logado')
-        })
-        .catch(() => {
-          this.$q.notify('erro ao logar')
-        })
-    },
-
-    logout () {
-      this.$firebase.auth().signOut()
-        .then(() => {
-          this.$q.notify('logout realizado com sucesso')
-        }).catch(() => {
-          this.$q.notify('erro ao fazer logout')
-        })
     }
   }
 })

@@ -1,12 +1,27 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="bg-fundo">
-    <q-header class="bg-transparent">
-      <q-toolbar class="justify-end">
-        <q-btn flat round dense icon="o_notifications" />
+    <q-header
+      :bordered="!($route.name === 'index')"
+      :class="$route.name === 'index' ? 'bg-transparent' : 'bg-white text-black'"
+    >
+      <q-toolbar class="row reverse justify-between">
+        <q-btn
+          v-if="user"
+          color="primary"
+          @click="$router.push({ name: 'conta' })"
+          flat round dense
+          :label="user.displayName"
+          icon="person_outline"
+        />
+        <q-toolbar-title class="text-weight-light" style="font-size: 1.3em" v-if="$route.meta.pageName">
+          {{ $route.meta.pageName }}
+        </q-toolbar-title>
+        <!-- <q-btn v-else label="5 fichas" no-caps color="white" text-color="black" unelevated icon="o_confirmation_number" /> -->
       </q-toolbar>
     </q-header>
 
     <q-footer>
+      <q-separator color="grey-4" />
       <q-tabs
         v-model="tab"
         class="bg-secondary text-grey-7"
@@ -14,10 +29,10 @@
         active-color="primary"
         no-caps
       >
-        <q-tab name="mails" icon="account_balance" label="Inicio" />
-        <q-tab name="alarms" icon="fas fa-medal" label="Ganhadores" />
-        <q-tab name="movies" icon="o_article" label="Apostas" />
-        <q-tab name="plus" icon="fas fa-ellipsis-h" label="Mais" />
+        <q-route-tab name="index" exact :to="{ name: 'index' }" icon="account_balance" label="Inicio" />
+        <q-route-tab name="ganhadores" :to="{ name: 'ganhadores' }" exact icon="fas fa-medal" label="Ganhadores" />
+        <q-route-tab name="apostas" :to="{ name: 'apostas' }" exact icon="o_article" label="Apostas" />
+        <q-route-tab name="plus" :to={} exact icon="fas fa-ellipsis-h" label="Mais" @click="leftDrawerOpen = !leftDrawerOpen" />
       </q-tabs>
     </q-footer>
 
@@ -25,17 +40,20 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      class="bg-grey-3"
+      class="row q-pa-md bg-grey-3"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
+      <div class="col-12 self-start">
+        Toda arrecadação é destinada ao ganhador...
+      </div>
 
-      </q-list>
+      <div class="col-12 self-end">
+        <q-btn v-if="user" @click="logout" outline color="primary" label="sair" unelevated class="full-width" />
+        <div v-else>
+          <q-btn @click="$router.push({ name: 'login' })" color="primary" label="login" unelevated class="full-width" />
+          <div class="text-center q-my-md">ou</div>
+          <q-btn @click="$router.push({ name: 'cadastro' })" outline color="primary" label="cadastre-se" unelevated class="full-width" />
+        </div>
+      </div>
     </q-drawer>
 
     <q-page-container>
@@ -47,6 +65,7 @@
 <script>
 
 import { defineComponent, ref } from 'vue'
+import { mapGetters } from 'vuex'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -64,7 +83,30 @@ export default defineComponent({
 
   data () {
     return {
-      tab: 'mails'
+      tab: 'index'
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      user: 'user/getUserData'
+    })
+  },
+
+  methods: {
+    logout () {
+      this.$q.loading.show()
+
+      this.$firebase.auth().signOut()
+        .then(() => {
+          this.$router.push({ name: 'login' })
+          this.$q.notify('Você saiu.')
+        }).catch(() => {
+          this.$q.notify('Erro ao sair! Tente novamente.')
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
     }
   }
 })

@@ -4,7 +4,47 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('pages/Login.vue'),
+        meta: {
+          pageName: 'Login'
+        }
+      },
+      {
+        path: 'ganhadores',
+        name: 'ganhadores',
+        component: () => import('pages/Ganhadores.vue'),
+        meta: {
+          pageName: 'Ultimos Ganhadores'
+        }
+      },
+      {
+        path: 'apostas',
+        name: 'apostas',
+        component: () => import('pages/Apostas.vue'),
+        meta: {
+          pageName: 'Ultimas Apostas'
+        }
+      },
+      {
+        path: 'cadastro',
+        name: 'cadastro',
+        component: () => import('pages/Cadastro.vue'),
+        meta: {
+          pageName: 'Cadastre-se'
+        }
+      },
+      {
+        path: 'conta',
+        name: 'conta',
+        component: () => import('pages/Conta.vue'),
+        meta: {
+          pageName: 'Minha Conta'
+        }
+      },
+      { path: '', name: 'index', component: () => import('pages/Index.vue') }
     ]
   },
 
