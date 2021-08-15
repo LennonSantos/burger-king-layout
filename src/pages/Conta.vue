@@ -77,14 +77,22 @@
           </div>
         </q-btn>
       </div>
-    </div> <!-- .row -->
 
-    <q-banner class="text-black bg-grey-4 q-mx-md">
-      Compatilhe seu código e <b>ganhe fichas grátis</b> para cada amigo que se cadastrar e comprar fichas.
-      <template v-slot:action>
-        <q-btn flat color="primary" label="Compartilhar" />
-      </template>
-    </q-banner>
+      <div class="col-12">
+        <q-banner class="text-black bg-grey-4">
+          Compatilhe seu código e <b>ganhe fichas grátis</b> para cada amigo que se cadastrar e comprar fichas.
+          <template v-slot:action>
+            <q-btn flat color="primary" label="Compartilhar" />
+          </template>
+        </q-banner>
+      </div>
+
+      <div class="col-12">
+        <p class="q-mb-sm">Siga-nos nas redes sociais</p>
+        <q-btn outline icon="fab fa-instagram" color="pink" size="1.3em" />
+        <q-btn outline icon="fab fa-facebook-f" color="blue" size="1.3em" class="q-ml-md" />
+      </div>
+    </div> <!-- .row -->
   </q-page>
 </template>
 

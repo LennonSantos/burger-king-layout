@@ -25,7 +25,7 @@ const routes = [
         name: 'apostas',
         component: () => import('pages/Apostas.vue'),
         meta: {
-          pageName: 'Ultimas Apostas'
+          pageName: 'Seus Jogos'
         }
       },
       {
@@ -42,6 +42,14 @@ const routes = [
         component: () => import('pages/Conta.vue'),
         meta: {
           pageName: 'Minha Conta'
+        }
+      },
+      {
+        path: 'apostar',
+        name: 'apostar',
+        component: () => import('pages/Apostar.vue'),
+        meta: {
+          pageName: 'Fazer Jogo'
         }
       },
       { path: '', name: 'index', component: () => import('pages/Index.vue') }

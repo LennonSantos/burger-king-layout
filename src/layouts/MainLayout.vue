@@ -9,7 +9,7 @@
           v-if="user"
           color="primary"
           @click="$router.push({ name: 'conta' })"
-          flat round dense
+          flat dense
           :label="user.displayName"
           icon="person_outline"
         />
@@ -31,7 +31,7 @@
       >
         <q-route-tab name="index" exact :to="{ name: 'index' }" icon="account_balance" label="Inicio" />
         <q-route-tab name="ganhadores" :to="{ name: 'ganhadores' }" exact icon="fas fa-medal" label="Ganhadores" />
-        <q-route-tab name="apostas" :to="{ name: 'apostas' }" exact icon="o_article" label="Apostas" />
+        <q-route-tab name="apostas" :to="{ name: 'apostas' }" exact icon="o_article" label="Jogos" />
         <q-route-tab name="plus" :to={} exact icon="fas fa-ellipsis-h" label="Mais" @click="leftDrawerOpen = !leftDrawerOpen" />
       </q-tabs>
     </q-footer>
@@ -44,12 +44,13 @@
     >
       <div class="col-12 self-start">
         Toda arrecadação é destinada ao ganhador...
+        <q-btn @click="logout" flat color="primary" icon="whatsapp" label="Suporte" unelevated class="full-width q-mb-lg" />
       </div>
 
       <div class="col-12 self-end">
-        <q-btn v-if="user" @click="logout" outline color="primary" label="sair" unelevated class="full-width" />
+        <q-btn v-if="user" @click="logout" outline color="primary" icon="logout" label="sair" unelevated class="full-width" />
         <div v-else>
-          <q-btn @click="$router.push({ name: 'login' })" color="primary" label="login" unelevated class="full-width" />
+          <q-btn @click="$router.push({ name: 'login' })" color="primary" icon="login" label="login" unelevated class="full-width" />
           <div class="text-center q-my-md">ou</div>
           <q-btn @click="$router.push({ name: 'cadastro' })" outline color="primary" label="cadastre-se" unelevated class="full-width" />
         </div>

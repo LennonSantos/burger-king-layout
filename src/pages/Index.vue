@@ -10,12 +10,18 @@
               </div>
               <div class="col">
                 <span class="text-weight-bolder" style="font-size: 17px">
-                  <q-badge color="secondary" text-color="black" label="Prêmio R$ 500,00" />
+                  <q-badge color="secondary" text-color="black" label="Estimativa de rateio R$ 500,00" />
                   <div>18º rodada</div>
                 </span>
               </div>
               <div class="col text-right">
-                <q-btn @click="apostar" flat label="Apostar" color="primary" class="text-bold" />
+                <q-btn
+                  @click="$router.push({ name: 'apostar' })"
+                  flat
+                  label="jogar"
+                  color="primary"
+                  class="text-bold"
+                />
               </div>
             </div>
           </q-card-section>
@@ -72,8 +78,8 @@
 
       <div class="col-12">
         <q-btn
-          @click="apostar"
-          label="Apostar"
+          @click="$router.push({ name: 'apostar' })"
+          label="Fazer jogo"
           color="primary"
           class="full-width text-h6 text-weight-bolder"
           style="border-radius: 0; border-top-left-radius: 20px; border-top-right-radius: 20px"
@@ -107,8 +113,6 @@ export default defineComponent({
   },
 
   methods: {
-    apostar () {
-    }
   }
 })
 </script>
