@@ -59,7 +59,9 @@
       <div v-if="(index + 1) < jogos.length" class="col-12 q-pt-md">
         <q-separator />
       </div>
+    </div>
 
+    <div class="row q-pa-md">
       <div class="col-12">
         <q-btn
           unelevated
@@ -110,7 +112,7 @@
 <script>
 const jogos = [
   {
-    id: 'xyz',
+    id: '1',
     casa: 'Santos',
     fora: 'Flamengo',
     gols: {
@@ -118,6 +120,26 @@ const jogos = [
       fora: 0
     },
     status: 'aguardando'// aguardando, andamento, finalizado, cancelado
+  },
+  {
+    id: '2',
+    casa: 'São Paulo',
+    fora: 'Palmeitas',
+    gols: {
+      casa: 0,
+      fora: 0
+    },
+    status: 'aguardando'
+  },
+  {
+    id: '3',
+    casa: 'Fluminense',
+    fora: 'Corinthians',
+    gols: {
+      casa: 0,
+      fora: 0
+    },
+    status: 'aguardando'
   }
 ]
 export default {
