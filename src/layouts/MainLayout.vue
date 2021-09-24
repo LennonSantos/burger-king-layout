@@ -9,9 +9,9 @@
         no-caps
       >
         <q-tab name="mails" icon="fas fa-store" label="Inicio" />
-        <q-tab name="alarms" icon="fas fa-crown" label="Clube BK" />
-        <q-tab name="movies" icon="article" label="Pedidos" />
-        <q-tab name="plus" icon="linear_scale" label="Mais" />
+        <q-tab name="alarms" icon="o_event" label="Calendário" />
+        <q-tab name="movies" icon="o_image" label="Fotos" />
+        <q-tab name="plus" icon="o_language" label="Portal" @click="leftDrawerOpen = !leftDrawerOpen" />
       </q-tabs>
     </q-footer>
 
